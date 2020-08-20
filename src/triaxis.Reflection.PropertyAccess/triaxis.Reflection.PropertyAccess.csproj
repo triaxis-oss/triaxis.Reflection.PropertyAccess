@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>triaxis.Reflection.PropertyAccess</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>ssimek</Authors>
+    <Company>triaxis s.r.o.</Company>
+    <Description>Provides dynamic property access without (continuous) use of reflection</Description>
+    <Copyright>&#169; 2020 triaxis s.r.o.</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/ssimek/triaxis.Reflection.PropertyAccess</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
+  </ItemGroup>
+
+</Project>
