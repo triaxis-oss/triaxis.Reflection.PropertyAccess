@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace triaxis.Reflection
 {
-    internal class ValueTypePropertyAccessor<TTarget, TValue> : IPropertyManipulator<TTarget, TValue>, IValueTypePropertyGetter<TTarget>, IValueTypePropertySetter<TTarget>
+    internal class ValueTypePropertyAccessor<TTarget, TValue> : IPropertyManipulator<TTarget, TValue>
         where TTarget : struct
     {
         private delegate TValue GetterDelegate(ref TTarget target);

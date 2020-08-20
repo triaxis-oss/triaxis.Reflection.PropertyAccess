@@ -6,7 +6,6 @@ namespace triaxis.Reflection
     /// Interface for fast modification of properties of value types
     /// </summary>
     public interface IValueTypePropertySetter<TTarget> : IPropertyAccessor
-        where TTarget : struct
     {
         /// <summary>
         /// Sets the value of the property of the specified structure

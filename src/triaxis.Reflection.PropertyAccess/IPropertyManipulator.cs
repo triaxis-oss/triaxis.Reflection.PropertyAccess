@@ -28,7 +28,9 @@ namespace triaxis.Reflection
     /// <summary>
     /// Interface for fast manipulation with properties of arbitrary objects
     /// </summary>
-    public interface IPropertyManipulator<TTarget, TValue> : IPropertyManipulator<TValue>, IPropertyGetter<TTarget, TValue>, IPropertySetter<TTarget, TValue>
+    public interface IPropertyManipulator<TTarget, TValue> : IPropertyManipulator<TValue>,
+        IPropertyGetter<TTarget, TValue>, IPropertySetter<TTarget, TValue>,
+        IValueTypePropertyGetter<TTarget>, IValueTypePropertySetter<TTarget>
     {
 
     }

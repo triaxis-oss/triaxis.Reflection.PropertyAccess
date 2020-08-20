@@ -6,7 +6,6 @@ namespace triaxis.Reflection
     /// Interface for fast retrieval of properties of value types
     /// </summary>
     public interface IValueTypePropertyGetter<TTarget> : IPropertyAccessor
-        where TTarget : struct
     {
         /// <summary>
         /// Retrieves the value of the property of the specified structure

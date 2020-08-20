@@ -41,6 +41,21 @@ namespace System.Reflection
             return (IPropertyGetter<TValue>)GetManipulator(propertyInfo);
         }
 
+
+        /// <summary>
+        /// Gets an interface for efficient retrieval of the specified property
+        /// of value type objects without using reflection (e.g. in a loop)
+        /// </summary>
+        public static IValueTypePropertyGetter<TTarget> GetValueTypeGetter<TTarget>(this PropertyInfo propertyInfo)
+        {
+            if (!propertyInfo.CanRead)
+            {
+                throw new ArgumentException("Property is not readable", nameof(propertyInfo));
+            }
+
+            return (IValueTypePropertyGetter<TTarget>)GetManipulator(propertyInfo);
+        }
+
         /// <summary>
         /// Gets an interface for efficient modification of the specified property
         /// on arbitrary objects without using reflection (e.g. in a loop)
@@ -79,7 +94,6 @@ namespace System.Reflection
         /// on value type objects without using reflection (e.g. in a loop)
         /// </summary>
         public static IValueTypePropertySetter<TTarget> GetValueTypeSetter<TTarget>(this PropertyInfo propertyInfo)
-            where TTarget : struct
         {
             if (!propertyInfo.CanWrite)
             {

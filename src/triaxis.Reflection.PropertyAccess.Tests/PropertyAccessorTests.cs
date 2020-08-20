@@ -22,6 +22,14 @@ namespace triaxis.Reflection.PropertyAccess.Tests
             }
 
             [Test]
+            public void GetValuePropertyWithValueAccessor([Random(1)] int value)
+            {
+                Value = value;
+                var target = this;
+                Assert.That(GetType().GetProperty("Value").GetValueTypeGetter<ReferenceTarget>().Get(ref target), Is.EqualTo(value));
+            }
+
+            [Test]
             public void GetReferenceProperty([Values("instanceTest")] string value)
             {
                 Reference = value;
@@ -46,6 +54,14 @@ namespace triaxis.Reflection.PropertyAccess.Tests
             public void SetValueProperty([Random(1)] int value)
             {
                 GetType().GetProperty("Value").GetSetter().Set(this, value);
+                Assert.That(Value, Is.EqualTo(value));
+            }
+
+            [Test]
+            public void SetValuePropertyWithValueAccessor([Random(1)] int value)
+            {
+                var target = this;
+                GetType().GetProperty("Value").GetValueTypeSetter<ReferenceTarget>().Set(ref target, value);
                 Assert.That(Value, Is.EqualTo(value));
             }
 
