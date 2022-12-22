@@ -128,15 +128,27 @@ namespace System.Reflection
                 throw new ArgumentException($"{typeof(TValue)} != {propertyInfo.PropertyType}");
             }
 
-            bool isStatic = (propertyInfo.GetMethod ?? propertyInfo.SetMethod).IsStatic;
+            return (IPropertyManipulator<TValue>)PropertyAccessorCache.Get(propertyInfo);
+        }
 
-            if (isStatic)
+
+        /// <summary>
+        /// Gets an interface for efficient retrieval and modification of the specified property
+        /// from arbitrary objects without using reflection (e.g. in a loop)
+        /// </summary>
+        public static IPropertyManipulator<TTarget, TValue> GetManipulator<TTarget, TValue>(this PropertyInfo propertyInfo)
+        {
+            if (!typeof(TTarget).Equals(propertyInfo.DeclaringType))
             {
-                return new StaticPropertyAccessor<TValue>(propertyInfo);
+                throw new ArgumentException($"{typeof(TTarget)} != {propertyInfo.DeclaringType}");
             }
 
-            var type = typeof(ReferenceTypePropertyAccessor<,>).MakeGenericType(propertyInfo.DeclaringType, typeof(TValue));
-            return (IPropertyManipulator<TValue>)Activator.CreateInstance(type, propertyInfo);
+            if (!typeof(TValue).Equals(propertyInfo.PropertyType))
+            {
+                throw new ArgumentException($"{typeof(TValue)} != {propertyInfo.PropertyType}");
+            }
+
+            return (IPropertyManipulator<TTarget, TValue>)PropertyAccessorCache.Get(propertyInfo);
         }
     }
 }
