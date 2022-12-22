@@ -123,7 +123,7 @@ namespace System.Reflection
         /// </summary>
         public static IPropertyManipulator<TValue> GetManipulator<TValue>(this PropertyInfo propertyInfo)
         {
-            if (typeof(TValue).Equals(propertyInfo.PropertyType))
+            if (!typeof(TValue).Equals(propertyInfo.PropertyType))
             {
                 throw new ArgumentException($"{typeof(TValue)} != {propertyInfo.PropertyType}");
             }

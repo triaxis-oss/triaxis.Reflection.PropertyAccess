@@ -54,6 +54,8 @@ namespace triaxis.Reflection
             => _getter((TTarget)target);
         object IValueTypePropertyGetter<TTarget>.Get(ref TTarget target)
             => _getter(target);
+        TValue IValueTypePropertyGetter<TTarget, TValue>.Get(ref TTarget target)
+            => _getter(target);
         TValue IPropertyGetter<TTarget, TValue>.Get(TTarget target)
             => _getter(target);
 
@@ -63,6 +65,8 @@ namespace triaxis.Reflection
             => _setter((TTarget)target, value);
         void IValueTypePropertySetter<TTarget>.Set(ref TTarget target, object value)
             => _setter(target, (TValue)value);
+        void IValueTypePropertySetter<TTarget, TValue>.Set(ref TTarget target, TValue value)
+            => _setter(target, value);
         void IPropertySetter<TTarget, TValue>.Set(TTarget target, TValue value)
             => _setter(target, value);
     }

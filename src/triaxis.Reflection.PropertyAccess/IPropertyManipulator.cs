@@ -30,7 +30,8 @@ namespace triaxis.Reflection
     /// </summary>
     public interface IPropertyManipulator<TTarget, TValue> : IPropertyManipulator<TValue>,
         IPropertyGetter<TTarget, TValue>, IPropertySetter<TTarget, TValue>,
-        IValueTypePropertyGetter<TTarget>, IValueTypePropertySetter<TTarget>
+        IValueTypePropertyGetter<TTarget>, IValueTypePropertySetter<TTarget>,
+        IValueTypePropertyGetter<TTarget, TValue>, IValueTypePropertySetter<TTarget, TValue>
     {
 
     }

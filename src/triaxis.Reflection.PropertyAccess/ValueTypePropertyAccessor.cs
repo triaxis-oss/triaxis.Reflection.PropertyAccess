@@ -47,6 +47,8 @@ namespace triaxis.Reflection
 
         object IValueTypePropertyGetter<TTarget>.Get(ref TTarget target)
             => _getter(ref target);
+        TValue IValueTypePropertyGetter<TTarget, TValue>.Get(ref TTarget target)
+            => _getter(ref target);
         TValue IPropertyGetter<TTarget, TValue>.Get(TTarget target)
             => _getter(ref target);
 
@@ -56,6 +58,8 @@ namespace triaxis.Reflection
             => throw new NotSupportedException("Cannot set property of a boxed value type");
         void IValueTypePropertySetter<TTarget>.Set(ref TTarget target, object value)
             => _setter(ref target, (TValue)value);
+        void IValueTypePropertySetter<TTarget, TValue>.Set(ref TTarget target, TValue value)
+            => _setter(ref target, value);
         void IPropertySetter<TTarget, TValue>.Set(TTarget target, TValue value)
             => _setter(ref target, value);
     }
