@@ -17,8 +17,8 @@ namespace triaxis.Reflection
         {
             _propertyInfo = propertyInfo;
 
-            var getMethod = propertyInfo.GetGetMethod();
-            var setMethod = propertyInfo.GetSetMethod();
+            var getMethod = propertyInfo.GetGetMethod(true);
+            var setMethod = propertyInfo.GetSetMethod(true);
             if (getMethod != null)
             {
                 _getter = (GetterDelegate)Delegate.CreateDelegate(typeof(GetterDelegate), getMethod);
